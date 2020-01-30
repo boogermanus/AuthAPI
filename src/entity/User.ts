@@ -7,12 +7,21 @@ export class User {
     id: number;
 
     @Column()
-    firstName: string;
+    firstname: string;
 
     @Column()
-    lastName: string;
+    lastname: string;
 
     @Column()
     age: number;
+
+    @Column()
+    username: string;
+
+    @Column()
+    password: string;
+
+    @Column()
+    isAdmin: boolean;
 
 }
