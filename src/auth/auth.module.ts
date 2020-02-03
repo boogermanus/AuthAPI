@@ -5,6 +5,8 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from '../user/user.module';
 import { UserService } from '../user/user.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '../entity/User';
 
 @Module({
   imports: [
@@ -14,6 +16,7 @@ import { UserService } from '../user/user.service';
       signOptions: {expiresIn: '1d'},
     }),
     UserModule,
+    TypeOrmModule.forFeature([User]),
   ],
   providers: [
     AuthService,

@@ -25,6 +25,7 @@ export class AuthService {
     }
 
     private async validatePassword(user: User, dto: ISignUp) {
-        return await bcrypt.compare(user.password, dto.password);
+        const value = await bcrypt.compare(dto.password, user.password);
+        return value;
     }
 }
