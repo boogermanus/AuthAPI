@@ -6,13 +6,13 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({nullable: true})
     firstname: string;
 
-    @Column()
+    @Column({nullable: true})
     lastname: string;
 
-    @Column()
+    @Column({nullable: true})
     age: number;
 
     @Column()
@@ -21,10 +21,10 @@ export class User {
     @Column()
     password: string;
 
-    @Column()
+    @Column({default: false})
     isAdmin: boolean;
 
-    @Column()
+    @Column({nullable: true})
     profileImageUrl: string;
 
 }
