@@ -11,7 +11,7 @@ export class AuthService {
                 private readonly userService: UserService) {}
 
     public async login(dto: ISignUp) {
-        const user = await this.userService.get(dto.username);
+        const user = await this.userService.getByUsername(dto.username);
 
         if ( await this.validatePassword(user, dto)) {
             const token = await this.jwtService.signAsync({
