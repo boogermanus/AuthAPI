@@ -1,6 +1,7 @@
-import { Controller, Body, Post, Get, Param } from '@nestjs/common';
+import { Controller, Body, Post, Get, Param, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ISignUp } from '../interfaces/signup.interface';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/users')
 export class UserController {
@@ -11,13 +12,9 @@ export class UserController {
     return await this.userService.signUp(dto);
   }
 
+  @UseGuards(AuthGuard())
   @Get()
   async getAll() {
       return await this.userService.getAll();
-  }
-
-  @Get(':id')
-  async get(@Param() id: string) {
-      return await this.userService.get(id);
   }
 }
