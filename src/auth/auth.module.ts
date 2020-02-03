@@ -7,6 +7,7 @@ import { UserModule } from '../user/user.module';
 import { UserService } from '../user/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../entity/User';
+import { AuthStrategy } from './auth.strategy';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { User } from '../entity/User';
   providers: [
     AuthService,
     UserService,
+    AuthStrategy,
   ],
   controllers: [AuthController],
 })
