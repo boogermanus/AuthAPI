@@ -24,6 +24,10 @@ export class AuthService {
         }
     }
 
+    public async verify(token: string) {
+        return await this.jwtService.verifyAsync(token);
+    }
+
     private async validatePassword(user: User, dto: ISignUp) {
         const value = await bcrypt.compare(dto.password, user.password);
         return value;
