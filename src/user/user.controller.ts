@@ -1,7 +1,8 @@
-import { Controller, Body, Post, Get, Param, UseGuards, Query, Delete } from '@nestjs/common';
+import { Controller, Body, Post, Get, Param, UseGuards, Query, Delete, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ISignUp } from '../interfaces/signup.interface';
 import { AuthGuard } from '@nestjs/passport';
+import { IUser } from '../interfaces/user.interface';
 
 @Controller('api/users')
 export class UserController {
@@ -33,4 +34,11 @@ export class UserController {
   async deleteUser(@Param('id') id: number) {
     return await this.userService.deleteById(id);
   }
+
+  @UseGuards(AuthGuard())
+  @Put(':id')
+  async updateUser(@Param('id') id: number, @Body() user: IUser) {
+    return await this.userService.update(id, user);
+  }
+
 }
