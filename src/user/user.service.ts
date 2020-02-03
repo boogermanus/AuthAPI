@@ -22,7 +22,14 @@ export class UserService {
         return await this.userRepository.find();
     }
 
-    public async get(id: number) {
-        return await this.userRepository.findOne(id);
+    public async get(id: string) {
+        const users = await this.userRepository.find({where: {username: id}});
+
+        if (users.length > 0) {
+            return new Promise<User>(resolve => resolve(users[0]));
+        } else {
+            return new Promise<User>(reject => reject(null));
+        }
     }
+
 }
