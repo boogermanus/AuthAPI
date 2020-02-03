@@ -1,4 +1,4 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import { Controller, Body, Post, Get, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ISignUp } from '../interfaces/signup.interface';
 
@@ -9,5 +9,15 @@ export class UserController {
   @Post('signup')
   async signUp(@Body() dto: ISignUp ) {
     return await this.userService.signUp(dto);
+  }
+
+  @Get()
+  async getAll() {
+      return await this.userService.getAll();
+  }
+
+  @Get(':id')
+  async get(@Param() id: number) {
+      return await this.userService.get(id);
   }
 }
