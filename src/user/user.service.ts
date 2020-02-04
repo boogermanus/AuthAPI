@@ -1,5 +1,5 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { ISignUp } from '../interfaces/signup.interface';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -47,7 +47,7 @@ export class UserService {
         return await this.userRepository.delete(id);
     }
 
-    public async update(id: number, user: IUser) {
+    public async update(id: number, user: IUser): Promise<UpdateResult> {
         return await this.userRepository.update(id,
             {
                 firstname: user.firstname,
