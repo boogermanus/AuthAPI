@@ -20,7 +20,7 @@ export class UserService {
         const newUser = new User();
         newUser.username = dto.username;
         newUser.password = await bcrypt.hash(dto.password, 8);
-        newUser.isAdmin = dto.isAdmin ?? false;
+        newUser.isAdmin = dto.isAdmin === undefined ? false : dto.isAdmin;
 
         return await this.userRepository.save(newUser);
     }
