@@ -47,6 +47,7 @@ export class UserService {
         return await this.userRepository.delete(id);
     }
 
+    // docs said to use save!
     public async update(id: number, user: IUser): Promise<UpdateResult> {
         return await this.userRepository.update(id,
             {
@@ -56,5 +57,9 @@ export class UserService {
                 isAdmin: user.isAdmin,
                 profileImageUrl: user.profileImageUrl,
             });
+    }
+
+    public async save(user: IUser) {
+        return await this.userRepository.save(user);
     }
 }
