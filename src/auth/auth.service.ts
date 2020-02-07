@@ -4,6 +4,7 @@ import { UserService } from '../user/user.service';
 import { ISignUp } from '../interfaces/signup.interface';
 import { User } from '../entity/User';
 import * as bcrypt from 'bcrypt';
+import { JsonWebTokenError } from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +29,25 @@ export class AuthService {
     }
 
     public async verify(token: string) {
-        return await this.jwtService.verifyAsync(token);
+        try {
+            return await this.jwtService.verifyAsync(token);
+        } catch (e) {
+            if (e instanceof JsonWebTokenError) {
+                return [];
+            }
+        }
+    }
+
+    public async expired(token: string) {
+        try {
+            this.jwtService.verify(token);
+        } catch (e) {
+            if (e instanceof JsonWebTokenError) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private async validatePassword(user: User, dto: ISignUp) {

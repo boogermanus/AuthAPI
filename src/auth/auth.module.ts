@@ -14,7 +14,7 @@ import { AuthStrategy } from './auth.strategy';
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
       secret: 'key',
-      signOptions: {expiresIn: '1d'},
+      signOptions: {expiresIn: '10s'},
     }),
     UserModule,
     TypeOrmModule.forFeature([User]),
