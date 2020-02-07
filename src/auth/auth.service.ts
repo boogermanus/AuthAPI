@@ -39,6 +39,11 @@ export class AuthService {
     }
 
     public async expired(token: string) {
+
+        if (token === undefined || token === null) {
+            return true;
+        }
+
         try {
             this.jwtService.verify(token);
         } catch (e) {
