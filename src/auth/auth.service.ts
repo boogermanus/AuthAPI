@@ -18,7 +18,10 @@ export class AuthService {
                 username: user.username,
             });
 
-            return {token};
+            return {
+                token,
+                user,
+            };
         } else {
             throw new UnauthorizedException(`Username: ${dto.username} not found`);
         }
