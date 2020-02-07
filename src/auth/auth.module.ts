@@ -13,8 +13,8 @@ import { AuthStrategy } from './auth.strategy';
   imports: [
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.register({
-      secret: 'key',
-      signOptions: {expiresIn: '10s'},
+      secret: '!manus celer dei!',
+      signOptions: {expiresIn: '1d'},
     }),
     UserModule,
     TypeOrmModule.forFeature([User]),
