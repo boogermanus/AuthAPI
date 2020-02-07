@@ -13,7 +13,6 @@ export class AuthController {
         return await this.authService.login(dto);
     }
 
-    @UseGuards(AuthGuard())
     @Get('verify')
     public async verify(@Query('token') token: string) {
         return await this.authService.verify(token);
